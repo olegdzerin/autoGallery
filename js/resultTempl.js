@@ -35,6 +35,8 @@
            return imgsForTemplateSubFn(array, count);
          }
      }
+
+     
      return {
          methodTemplateResult: methodTemplateResult,
          imgsForTemplate: imgsForTemplate

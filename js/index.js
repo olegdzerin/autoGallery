@@ -1,4 +1,4 @@
-var init = () => {
+var initModule = (() => {
     var addImage = document.getElementById('add'),
         result = document.querySelector("#result"),
         selectSortingElement = document.getElementById("type-selector"),
@@ -31,6 +31,9 @@ var init = () => {
         volueResult = e.target.value;
         init();
     };
+    var incimentCount = (countCar) => {
+        
+    };
     var initAdd = () => {
         countCar = countCar + 1;
         
@@ -42,9 +45,18 @@ var init = () => {
         sortImgBlock.sortImg(obj.newData1, volueResult);
         result.innerHTML = resTempMethods().methodTemplateResult(obj.newData1);
         initDelate();
-        countCarElement.value = countCar;
-        countAddingElement.innerHTML = countCar;
+        countCarElement.value = obj.countCar;
+        countAddingElement.innerHTML = obj.countCar;
     }
     addImage.addEventListener("click", initAdd);
     selectSortingElement.addEventListener('click', selectSort)
-}
+
+    // return {
+    //     init: init,
+    //     initAdd: initAdd,
+    //     initDelate: initDelate,
+    //     selectSort: selectSort,
+    //     removeImage: removeImage
+
+    // }
+})()
