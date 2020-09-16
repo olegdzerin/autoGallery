@@ -1,4 +1,5 @@
-var transformUrl = str => (str.indexOf('http://') !== 0) ? ` http://${str}` : `${str}`;
+ import {data1} from './data.js'
+ var transformUrl = str => (str.indexOf('http://') !== 0) ? ` http://${str}` : `${str}`;
 var transformName = name => `${name[0].toUpperCase()}${name.slice(1).toLowerCase()}`;
 var transformDescrition = str => (str.length > 15) ? `${str.substring(0,15)}...` : str;
 var getFormattedDate = date => {
@@ -23,5 +24,5 @@ var transformAllData = list => {
     };
     return list;
 };
-var newData = [...data];
-transformAllData(newData);
+var newData = [...data1];
+export const data2 = transformAllData(newData);

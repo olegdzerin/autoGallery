@@ -1,4 +1,4 @@
-var data = [{
+ export var data1 = [{
         url: "desktopwallpapers.org.ua/mini/201507/40069.jpg",
         name: "CHEVROLET",
         id: 1,

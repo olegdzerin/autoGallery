@@ -1,4 +1,9 @@
- var resTempMethods = function () {
+ import {domElements} from './main1.js';
+ console.log(domElements);
+// import {inputData} from './main1.js';
+ 
+//  const secondItemTemplate = domElements.
+  export const resultTempMethods = function () {
      var methodTemplateResult = (array) => {
          var resultHTML = "";
          array.forEach(function (item) {
@@ -7,7 +12,7 @@
          return resultHTML;
      };
      var methodTemplate = (item, array) => {
-         return secondItemTemplate = `<div class="col-md-3  col-sm-4 col-xl-2"> \
+         return   `<div class="col-md-3  col-sm-4 col-xl-2"> \
             <img src="${item.url}" alt="${item.name}" class="img-thumbnail">\
             <div class="info-wrapper">\ 
             <div class="text-muted">${array.indexOf(item) + 1} ${item.name}</div>\
@@ -20,14 +25,15 @@
             </div>`;
      };
      var imgsForTemplateSubFn = (array, count) => {
-        array.splice(count);
+const array1 = [...array]
+        array1.splice(1);
         return {
-            newData1: array,
+            spliceData: array1,
             countCar: count
         }
      };
      var imgsForTemplate = (array, count) => {
-         if (count > array.length) {
+         if (count > 10) {
             alert('больше нет елементов');
             count = count - 1;
           return  imgsForTemplateSubFn(array, count);

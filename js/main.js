@@ -1,4 +1,10 @@
-(function () {
+import {data2} from './transformData.js';
+import {resultTempMethods} from './resultTempl.js';
+import {sortImgBlock} from './sortImg.js';
+// import {delate} from './delate.js'
+// (function () {
+    var data = [...data2];
+    var dataAfterDelay =[...data2]
     var addImage = document.getElementById('add'),
         result = document.querySelector("#result"),
         selectSortingElement = document.getElementById("type-selector"),
@@ -6,29 +12,33 @@
         countAddingElement = document.getElementById("count"),
         //змінні які будуть змінюватися в процесі виконання  
         volueResult = "0",
-        newData1 = [...data],
+     //   newData1 = [...data],
         countCar = 0;
     var countCarBuildInDom = () => {
         countCarElement.value = countCar;
     };
+    var removeImageSbFn = (name) => {
+       return dataAfterDelay.filter((item, index) => {
+            if (!(item.name === name)) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        });
+    }
   
     var removeImage = (event) => {
-        var elementTarget = event.target;
-        var elementCurrentTarget = event.currentTarget;
-        console.log(typeof(event.target.tagName));
-        if(event.target.tagName === "BUTTON"){
+         if(event.target.tagName === "BUTTON"){
             var element = event.target.parentElement.parentElement.parentElement;
             var img = element.getElementsByTagName("img");
             var name = img[0]["alt"];
-            newData = newData.filter((item, index) => {
-                if (!(item.name === name)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+          //  const data5 = [...data];
+          dataAfterDelay = removeImageSbFn(name)
             countCar = countCar - 1;
-            init();
+       
+            init(dataAfterDelay, countCar, volueResult);
+           
         }
      
     };
@@ -38,24 +48,21 @@
     };
     var selectSort = (e) => {
         volueResult = e.target.value;
-        init();
+        init(dataAfterDelay,countCar, volueResult);
     };
     var initAdd = () => {
         countCar = countCar + 1;
-       
-        init();
+  
+        init(dataAfterDelay,countCar,volueResult);
     };
-    var init = () => {
-        newData1 = [...newData];
-        var obj = resTempMethods().imgsForTemplate(newData1, countCar);
-        countCarElement.value = obj.countCar;
-        countAddingElement.innerHTML = obj.countCar;
-        countCar = obj.countCar;
-        newData1 = obj.newData1;
-        sortImgBlock.sortImg(newData1, volueResult);
-        result.innerHTML = resTempMethods().methodTemplateResult(newData1);
+    var init = (list, num, select) => {
+       const obj = resultTempMethods().imgsForTemplate(list , num);
+       const sortData = sortImgBlock.sortImg(obj.spliceData, select);
+      // countCar = obj.countCar
+       countCarElement.value = obj.countCar;
+        result.innerHTML = resultTempMethods().methodTemplateResult(sortData);
         initDelate();
     }
     addImage.addEventListener("click", initAdd);
     selectSortingElement.addEventListener('click', selectSort)
-})()
+// })()

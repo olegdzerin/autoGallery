@@ -1,4 +1,4 @@
-var sortImgBlock = (function () {
+export var sortImgBlock = function () {
     function compare1234(a, b) {
         if (a.dateNoFormatted < b.dateNoFormatted) return -1;
         if (a.dateNoFormatted > b.dateNoFormatted) return 1;
@@ -33,11 +33,13 @@ var sortImgBlock = (function () {
     }
     var sortImg = (arr, volueResult) => {
         if (volueResult === "0" || volueResult === "1") {
-            return sortUp(arr, true)
+            sortUp(arr, true);
+            return arr
             // return data.sort(compareABCD);
         } else {
             if (volueResult === "2") {
-                return sortDown(arr, true);
+                 sortDown(arr, true);
+                 return arr
             } else {
                 if (volueResult === "3") {
                     return sortUp(arr, false);
@@ -53,4 +55,4 @@ var sortImgBlock = (function () {
     return {
         sortImg: sortImg
     }
-})();
+};
