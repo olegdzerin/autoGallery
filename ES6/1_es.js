@@ -8,14 +8,16 @@ const arr1 = ar.splice(num);
 console.log(ar);
 }
 //console.log(arr1);
-// var newArr = arr.filter(item => {
-//     if (item ===1){return true}else{
-//         return false
-//     }
-// })
-exp(arr);
-exp(arr);
-exp(arr);
+var newArr = arr.filter(item => {
+    if (item ===1){return true}else{
+        return false
+    }
+})
+// exp(arr);
+// exp(arr);
+// exp(arr);
+console.log(newArr);
+console.log(arr)
 
 
 

@@ -5,9 +5,10 @@ export class DomElements {
        // this.countCarElement = document.getElementById("countCar-element");
         this.countAddingElement = document.getElementById("count");
      this.result = document.querySelector("#result");
+     
     }
 }
-export const domElements = new DomElements(4);
+export const domElements = new DomElements();
 console.log(domElements);
 
 //const domElement = new DomElements(volueResult, data, 0);

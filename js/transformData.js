@@ -10,7 +10,7 @@ var getFormattedDate = date => {
         tmpDate.getHours() + ":" +
         tmpDate.getMinutes();
 }
-var transformData = obj => obj = {
+var transformData = obj => obj = { 
     url: transformUrl(obj.url),
     name: transformName(obj.name),
     description: transformDescrition(obj.description),
@@ -24,5 +24,6 @@ var transformAllData = list => {
     };
     return list;
 };
-var newData = [...data1];
-export const data2 = transformAllData(newData);
+var data2 = [...data1];
+
+export const newData1 = transformAllData(data2);

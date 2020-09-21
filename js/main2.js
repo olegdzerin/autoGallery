@@ -1,91 +1,81 @@
-import {
-    domElements
-} from './main1.js';
+import {domElements} from './main1.js';
 // import {InputData} from './main1';
-import {
-    data2
-} from './transformData.js';
-import {sortImgBlock} from './sortImg.js'
+import {newData1} from './transformData.js';
+// import {sortImgBlock} from './sortImg.js'
+import {Init} from './initClass.js';
+var newData = newData1;
 var countCar = 0;
-var valueResult = 0;
+var valueResult = "0";
+var dataCurrent = [];
+
 
 var initAdd = () => {
     countCar = countCar + 1;
-    //var sorting = new Sorting(data2, countCar, domElements.selectSortingElement.value);
-    var data9 =  sortImgBlock().sortImg(data2,valueResult);
-    console.log(data9)
-  
-  
-     var init = new Init(data2, countCar);
    
-    domElements.result.innerHTML = init.resultTemplate()
-    domElements.countAddingElement.innerHTML = init.countAddingElement;
+    var init = new Init(newData, countCar, newData);
+  //  console.log(init.data);
+    dataCurrent = init.imgsForTemplate();
+    sortImgBlock.sortImg(dataCurrent, domElements.selectSortingElement.value);
+    console.log(dataCurrent);
+    // setTimeout(() => {
+    //     var init1 = new Init(dataCurrent, countCar);
+    //  domElements.result.innerHTML = init1.resultTemplate()
+    // domElements.countAddingElement.innerHTML = init.countCar;
+    // }, 3000)
+    var init1 = new Init(dataCurrent, countCar, newData);
+    if(init1.resultTemplate()){
+        domElements.result.innerHTML = init1.resultTemplate();
+        domElements.countAddingElement.innerHTML = init1.imgsForTemplateSubFn().length;
+      }
+    
 };
-
-
-
-class Init {
-    constructor(data, countCar) {
-        this.countCar = countCar;
-        this.data = data;
-        this.countAddingElement = 0;
-
-    }
-    imgsForTemplate() {
-
-        if (this.countCar > 10) {
-            alert('больше нет елементов');
-            this.countCar = this.countCar - 1;
-            this.imgsForTemplateSubFn.apply(this);
-        } else {
-            // console.log(`this ${this.data}`);
-            return this.imgsForTemplateSubFn.apply(this);
-        }
-    };
-    imgsForTemplateSubFn() {
-
-        var num = this.countCar
-        var dataCurrent = [...this.data]
-        dataCurrent.splice(this.countCar);
-        // this.sortImgs(dataCurrent, this.valueResult)
-        return dataCurrent;
-    }
-    resultTemplate() {
-        var resultHTML = "";
-        // console.log(this.imgsForTemplate());
-        this.countAddingElement = this.imgsForTemplate().length
-        const that = this;
-        this.imgsForTemplate().forEach(function (item, array) {
-            resultHTML = resultHTML + that.resultTemplateSbFn(item, array);
-        })
-        return resultHTML;
-    }
-    resultTemplateSbFn(item, array) {
-        return `<div class="col-md-3  col-sm-4 col-xl-2"> \
-        <img src="${item.url}" alt="${item.name}" class="img-thumbnail">\
-        <div class="info-wrapper">\ 
-         <div class="text-muted"> ${item.name}</div>\
-        <div class="text-muted top-padding">${item.description}</div>\
-        <div class="text-muted">${item.date}</div>\
-        <div class="col-lg-12 col-md-12 text-center ">\
-        <button class="btn btn-default delate" id="btn-delate" data-toggle="tooltip" data-placement="left" title="Удалить">Удалить</button>\
-        </div>\
-        </div>\
-        </div>`;
-    }
-    exp() {
-        console.log(this.selectSorting)
-    }
-
-
-    
-    
+var initAfterSelection = () => {
+  
+     sortImgBlock.sortImg(dataCurrent, domElements.selectSortingElement.value);
+    var init1 = new Init(dataCurrent, countCar, newData);
+    if(init1.resultTemplate()){
+        domElements.result.innerHTML = init1.resultTemplate();
+      }
+    // domElements.countAddingElement.innerHTML = init1.countAddingElement;
+    domElements.countAddingElement.innerHTML = count.innerHTML;
 
 }
+var initDelay = (event) => {
+
+    if (event.target.tagName === "BUTTON") {
+        var element = event.target.parentElement.parentElement.parentElement;
+        var img = element.getElementsByTagName("img");
+        var name = img[0]["alt"];
+       
+        var dataRemate = newData.filter((item, index) => {
+            if (!(item.name === name)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        newData = [...dataRemate];
+     //   console.log(newData);
+        countCar = countCar - 1;
+        var init1 = new Init(newData, countCar);
+    //   if(init1.resultTemplate()){
+    //     domElements.result.innerHTML = init1.resultTemplate();
+    //   }
+      domElements.result.innerHTML = init1.resultTemplate();
+        domElements.countAddingElement.innerHTML = count.innerHTML - 1
+
+    }
+}
+
+
+
+
+
+
 
 domElements.addImage.addEventListener("click", initAdd);
-// domElements.selectSortingElement.addEventListener('click', selectSort)
-
+domElements.selectSortingElement.addEventListener('click', initAfterSelection)
+domElements.result.addEventListener('click', initDelay)
 
 
 

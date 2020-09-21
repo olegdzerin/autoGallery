@@ -1,4 +1,4 @@
-export var sortImgBlock = function () {
+var sortImgBlock = (function () {
     function compare1234(a, b) {
         if (a.dateNoFormatted < b.dateNoFormatted) return -1;
         if (a.dateNoFormatted > b.dateNoFormatted) return 1;
@@ -32,27 +32,32 @@ export var sortImgBlock = function () {
         if (typeSorting === false) data.sort(compare4321);
     }
     var sortImg = (arr, volueResult) => {
-        if (volueResult === "0" || volueResult === "1") {
-            sortUp(arr, true);
-            return arr
-            // return data.sort(compareABCD);
-        } else {
-            if (volueResult === "2") {
-                 sortDown(arr, true);
+      //  console.log(arr)
+        if(arr){
+            if (volueResult === "0" || volueResult === "1") {
+                sortUp(arr, true);
                  return arr
-            } else {
-                if (volueResult === "3") {
-                    return sortUp(arr, false);
-
-                } else {
-                    if (volueResult === "4") {
-                        return sortDown(arr, false);
-                    }
-                }
+                 // return data.sort(compareABCD);
+             } else {
+                 if (volueResult === "2") {
+                      sortDown(arr, true);
+                      return arr
+                 } else {
+                     if (volueResult === "3") {
+                         return sortUp(arr, false);
+     
+                     } else {
+                         if (volueResult === "4") {
+                             return sortDown(arr, false);
+                         }
+                     }
+                 }
+             }
             }
-        }
     }
+    var sor = (a) => {return a}
     return {
-        sortImg: sortImg
+        sortImg: sortImg,
+        sor:sor
     }
-};
+})();
