@@ -6,7 +6,10 @@ var logger = require('morgan');
 var formidable = require('formidable');
 
 var indexRouter = require('./routes/index');
-var index1Router = require('./routes/index1');
+var loginRouter = require('./routes/login');
+var registrationRouter = require('./routes/registration');
+var indexRouter = require('./routes/index');
+var galleryRouter = require('./routes/gallery');
 var usersRouter = require('./routes/users');
 var filmsRouter = require('./routes/films');
 var actorsRouter = require('./routes/actors');
@@ -51,14 +54,21 @@ app.use(function ( req, res, next) {
   next();
 });
 
+app.use('/login', loginRouter);
+app.use('/registration',registrationRouter)
 app.use('/', indexRouter);
-app.use('/index1', index1Router);
+app.use('/gallery', galleryRouter);
 app.use('/users', usersRouter);
 // app.use('/actors', actorsRouter);
 app.use('/films', filmsRouter);
 app.use('/actors', actorsRouter);
 app.use('/usersPost', usersPostRouter);
 app.use('/loadFile', loadFileRouter);
+// app.post('/login',(req, res, next) => {
+//   console.log(req.body);
+//   res.redirect('login')
+// })
+
 
 
 

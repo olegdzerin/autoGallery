@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row center text-center">
+        <div class="col-lg-12 col-md-12">
+            <form action="/login" id="registration" method="post">
+                <h2>Sign up</h2>
+                <label for="email">Email</label>
+                <input type="email" name="email" required />
+                <div class="email error"></div>
+                <label for="password">Password</label>
+                <input type="password" name="password" required />
+                <div class="password error"></div>
+                {{!-- <input type="submit"> --}}
+                <button type="button" id="btn-sign-up">Sign up</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    console.log('ok');
+     const form = document.getElementById('registration')
+     
+    $(document).ready(function () {
+        console.log($('#btn-sign-up').html());
+       
+        $('#btn-sign-up').click( function () {
+           localStorage.email = form.email.value;
+           localStorage.password = form.password.value;
+            
+          
+        })
+
+    })
+</script>
